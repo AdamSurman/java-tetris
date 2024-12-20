@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javatetris.internal.GameController">
+    <Canvas fx:id="canvas" height="700.0" width="700.0" />
+    <HBox>
+        <Button fx:id="btnRtLeft"
+                maxWidth="1.7976931348623157E308"
+                minWidth="75.0"
+                onAction="#rtLeft"
+                prefHeight="30.0"
+                text="Rotate Left"
+                textAlignment="CENTER"
+                textOverrun="CLIP"
+                wrapText="true"
+                HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="btnLeft"
+                maxWidth="1.7976931348623157E308"
+                minWidth="75.0"
+                onAction="#left"
+                prefHeight="30.0"
+                text="Left"
+                textAlignment="CENTER"
+                textOverrun="CLIP"
+                wrapText="true"
+                HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="btnRight"
+                maxWidth="1.7976931348623157E308"
+                minWidth="75.0"
+                onAction="#right"
+                prefHeight="30.0"
+                text="Right"
+                textAlignment="CENTER"
+                textOverrun="CLIP"
+                wrapText="true"
+                HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="btnRtRight"
+                maxWidth="1.7976931348623157E308"
+                minWidth="75.0"
+                onAction="#rtRight"
+                prefHeight="30.0"
+                text="Rotate Right"
+                textAlignment="CENTER"
+                textOverrun="CLIP"
+                wrapText="true"
+                HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="btnDrop"
+                maxWidth="1.7976931348623157E308"
+                minWidth="75.0"
+                onAction="#drop"
+                prefHeight="30.0"
+                text="Drop"
+                textAlignment="CENTER"
+                textOverrun="CLIP"
+                wrapText="true"
+                HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="btnSwap"
+                maxWidth="1.7976931348623157E308"
+                minWidth="75.0"
+                onAction="#swap"
+                prefHeight="30.0"
+                text="Swap"
+                textAlignment="CENTER"
+                textOverrun="CLIP"
+                wrapText="true"
+                HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </HBox>
+</VBox>
