@@ -15,18 +15,18 @@ public class GameThread extends AnimationTimer {
     @Getter
     Scene scene;
 
-    public GameThread(Canvas canvas) {
+    public GameThread(Canvas canvas, GameController gameController) {
         this.gc = canvas.getGraphicsContext2D();
         gc.setImageSmoothing(false);
         gc.setFill(Color.WHITE);
-        this.scene = new Scene(new Dimension2D(canvas.getWidth(), canvas.getHeight()));
+        this.scene = new Scene(new Dimension2D(canvas.getWidth(), canvas.getHeight()), gameController);
     }
 
     long previous;
 
     @Override
     public void handle(long now) {
-        final var deltaTime = (now - previous) / 1000f;
+        final var deltaTime = (now - previous) / 1000000000f;
 
         scene.simulate(deltaTime);
         gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());

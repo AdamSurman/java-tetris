@@ -34,4 +34,12 @@ public class Block extends Graphic implements Drawable {
     public Block(Dimension2D position, Color color) {
         super(position, color.getTexture());
     }
+
+    Block(Block template) {
+        super(new Dimension2D(template.getPosition().getWidth(), template.getPosition().getHeight()), template.texture);
+    }
+
+    public Block copy() {
+      return new Block(this);
+    }
 }

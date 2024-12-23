@@ -1,5 +1,6 @@
 package javatetris;
 
+import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Dimension2D;
 
@@ -8,20 +9,29 @@ import java.util.Objects;
 
 import javafx.scene.image.Image;
 
+import javatetris.game.Engine;
 import javatetris.game.GameArea;
 import javatetris.internal.Drawable;
+import javatetris.internal.GameController;
 import javatetris.internal.GameObject;
-import javatetris.internal.Simulatable;
 import javatetris.ui.Graphic;
 import javatetris.ui.HBox;
 import javatetris.ui.VBox;
 import lombok.Getter;
+import lombok.Setter;
 
 public class Scene {
 
+    final GameController gameController;
     final Dimension2D dim;
     @Getter
     ArrayList<GameObject> objects = new ArrayList<>();
+    @Getter
+    GameArea gameArea;
+    @Getter
+    Engine engine;
+    @Getter @Setter
+    long score = 0;
 
     /*
      * ┌─ 350 * 350 ──────────────────┐
@@ -41,8 +51,11 @@ public class Scene {
      * └──────────────────────────────┘
      */
 
-    public Scene(Dimension2D dim) {
+    public Scene(Dimension2D dim, GameController gameController) {
+        this.gameController = gameController;
         this.dim = dim;
+        gameArea = new GameArea();
+        engine = new Engine(this);
 
         var hbox = new HBox();
         hbox.addChild(
@@ -50,7 +63,7 @@ public class Scene {
                                       .requireNonNull(getClass().getResource(
                                           "/javatetris/textures/ui/UILeft.png"))
                                       .toExternalForm())));
-        hbox.addChild(new GameArea());
+        hbox.addChild(gameArea);
         hbox.addChild(
             new Graphic(new Image(Objects
                                       .requireNonNull(getClass().getResource(
@@ -89,12 +102,21 @@ public class Scene {
             }
         }
     }
+    float timer = 0.0f;
 
     public void simulate(float deltaTime) {
-        for (var obj : objects) {
-            if (obj instanceof Simulatable simulatable) {
-                simulatable.simulate(deltaTime);
-            }
+        if (timer < 1.0f)
+            timer += deltaTime;
+        else {
+            timer = 0.0f;
+            engine.tetrominoTryMoveDown();
         }
+        if (engine.checkHeapRows())
+            stop();
+    }
+
+    void stop() {
+        System.out.println("Final score is: " + score);
+        Platform.exit();
     }
 }

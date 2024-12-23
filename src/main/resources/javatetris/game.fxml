@@ -84,7 +84,7 @@
                 minWidth="75.0"
                 onAction="#swap"
                 prefHeight="30.0"
-                text="Swap"
+                text="I ran out of time"
                 textAlignment="CENTER"
                 textOverrun="CLIP"
                 wrapText="true"

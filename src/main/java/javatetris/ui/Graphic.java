@@ -20,5 +20,10 @@ public class Graphic extends GameObject implements Drawable {
     @Override
     public void draw(GraphicsContext gc) {
         gc.drawImage(texture, position.getWidth(), position.getHeight(), size.getWidth(), size.getHeight());
+        for (var child : getChildren()) {
+            if (child instanceof Drawable drawable) {
+                drawable.draw(gc);
+            }
+        }
     }
 }

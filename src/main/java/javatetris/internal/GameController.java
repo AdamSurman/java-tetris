@@ -1,7 +1,6 @@
 package javatetris.internal;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Dimension2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 
@@ -33,24 +32,30 @@ public class GameController {
 
     @FXML
     void initialize() {
-        thread = new GameThread(canvas);
+        thread = new GameThread(canvas, this);
         thread.start();
     }
 
-    public void rtLeft(ActionEvent event) {}
+    public void rtLeft(ActionEvent event) {
+        thread.getScene().getEngine().tetrominoTryRotateLeft();
+    }
 
     public void left(ActionEvent event) {
-        thread.getScene().getObjects().getFirst().setPosition(new Dimension2D(thread.getScene().getObjects().getFirst().getPosition().getWidth() - 1, thread.getScene().getObjects().getFirst().getPosition().getHeight()));
+        thread.getScene().getEngine().tetrominoTryMoveLeft();
     }
 
-    public void rtRight(ActionEvent event) {}
+    public void rtRight(ActionEvent event) {
+        thread.getScene().getEngine().tetrominoTryRotateRight();
+    }
 
     public void right(ActionEvent event) {
-        thread.getScene().getObjects().getFirst().setPosition(new Dimension2D(thread.getScene().getObjects().getFirst().getPosition().getWidth() + 1, thread.getScene().getObjects().getFirst().getPosition().getHeight()));
+        thread.getScene().getEngine().tetrominoTryMoveRight();
 
     }
 
-    public void drop(ActionEvent event) {}
+    public void drop(ActionEvent event) {
+        thread.getScene().getEngine().tetrominoTryMoveDown();
+    }
 
     public void swap(ActionEvent event) {}
 }
